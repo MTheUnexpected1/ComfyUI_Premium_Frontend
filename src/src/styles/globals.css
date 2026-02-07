@@ -1,0 +1,288 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@theme {
+  /* Premium dark palette */
+  --color-bg-primary: #0f0f11;
+  --color-bg-secondary: #111113;
+  --color-bg-tertiary: #18181b;
+  
+  /* Glass morphism */
+  --glass-bg: rgba(0, 0, 0, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #0f0f11;
+  color: #fafafa;
+}
+
+/* ==========================================
+   REACT FLOW OVERRIDES - CRYSTAL CLEAR PORTS
+   ========================================== */
+
+.react-flow {
+  background: #0f0f11;
+}
+
+.react-flow__node {
+  cursor: grab;
+  font-size: 14px;
+}
+
+.react-flow__node.selected {
+  box-shadow: none;
+}
+
+/* 
+  PORT HANDLE STYLING - LARGE AND VISIBLE
+  These styles make ports MUCH more visible and easier to connect
+  
+  Key improvements:
+  - Larger base size (16px vs default 8px)
+  - Grows to 22px on hover (very obvious)
+  - Strong multi-layer glow effect
+  - Smooth transitions
+  - Clear visual feedback
+*/
+.port-handle {
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 50%;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: crosshair !important;
+  position: relative;
+  z-index: 10;
+}
+
+/* STRONG HOVER STATE - Makes connection points crystal clear */
+.port-handle:hover {
+  width: 22px !important;
+  height: 22px !important;
+  transform: scale(1.2) !important;
+  border-width: 4px !important;
+  box-shadow: 
+    0 0 20px currentColor,
+    0 0 12px currentColor,
+    0 0 6px currentColor,
+    0 0 30px rgba(255, 255, 255, 0.3) !important;
+  z-index: 20 !important;
+  filter: brightness(1.3);
+}
+
+/* Port connecting state (while dragging a connection) */
+.react-flow__handle-connecting {
+  background: transparent !important;
+  border: 4px dashed currentColor !important;
+  animation: pulse-port 1.2s ease-in-out infinite;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+@keyframes pulse-port {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 15px currentColor;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.85;
+    box-shadow: 0 0 25px currentColor, 0 0 40px currentColor;
+  }
+}
+
+/* Valid connection target - GREEN GLOW */
+.react-flow__handle-valid {
+  background: currentColor !important;
+  box-shadow: 
+    0 0 25px #10b981 !important,
+    0 0 15px #10b981 !important,
+    0 0 40px rgba(16, 185, 129, 0.5) !important;
+  border-color: #10b981 !important;
+  width: 20px !important;
+  height: 20px !important;
+  animation: pulse-valid 0.8s ease-in-out infinite;
+}
+
+@keyframes pulse-valid {
+  0%, 100% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+/* Invalid connection target - RED GLOW */
+.react-flow__handle-invalid {
+  background: #ef4444 !important;
+  border-color: #ef4444 !important;
+  box-shadow: 
+    0 0 20px #ef4444 !important,
+    0 0 35px rgba(239, 68, 68, 0.6) !important;
+  width: 20px !important;
+  height: 20px !important;
+  animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
+/* 
+  EDGE (CONNECTION LINE) STYLING
+  Thick, smooth, easy to trace
+*/
+.react-flow__edge-path {
+  stroke-width: 4.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.react-flow__edge.selected .react-flow__edge-path,
+.react-flow__edge:hover .react-flow__edge-path {
+  stroke-width: 6.5px;
+}
+
+/* 
+  CONNECTION LINE (preview while dragging)
+  Matches the smooth style of existing edges
+*/
+.react-flow__connection-path {
+  stroke-width: 4.5px;
+  stroke-dasharray: 12 8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: connection-dash 1.5s linear infinite;
+}
+
+@keyframes connection-dash {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+/* Add visual "ready to connect" state to connection line */
+.react-flow__connection.valid .react-flow__connection-path {
+  stroke: #10b981 !important;
+  stroke-width: 5px;
+  filter: drop-shadow(0 0 8px #10b981);
+}
+
+.react-flow__connection.invalid .react-flow__connection-path {
+  stroke: #ef4444 !important;
+  stroke-width: 5px;
+  filter: drop-shadow(0 0 8px #ef4444);
+}
+
+/* ==========================================
+   NODE HOVER → EDGE HIGHLIGHTING
+   ========================================== */
+
+/* When hovering a node, highlight connected edges */
+.react-flow__node:hover ~ .react-flow__edges .react-flow__edge-path {
+  opacity: 0.3;
+  transition: opacity 0.2s ease;
+}
+
+.react-flow__node:hover ~ .react-flow__edges .react-flow__edge.selected .react-flow__edge-path {
+  opacity: 1;
+  stroke-width: 7px;
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+/* ==========================================
+   MINI-MAP STYLING
+   ========================================== */
+
+.react-flow__minimap {
+  background: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.react-flow__minimap-mask {
+  fill: rgba(139, 92, 246, 0.2);
+  stroke: rgba(139, 92, 246, 0.6);
+  stroke-width: 2;
+}
+
+.react-flow__minimap-node {
+  fill: rgba(255, 255, 255, 0.15);
+  stroke: none;
+}
+
+/* ==========================================
+   CUSTOM SCROLLBAR
+   ========================================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  border: 2px solid #0f0f11;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+
+.glass {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-strong {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Node executing animation */
+@keyframes node-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 currentColor;
+  }
+  50% {
+    box-shadow: 0 0 20px 4px currentColor;
+  }
+}
+
+.node-executing {
+  animation: node-pulse 2s ease-in-out infinite;
+}
+
+/* Selection ring for better feedback */
+.react-flow__node.selected {
+  outline: 2px solid rgba(255, 255, 255, 0.3);
+  outline-offset: 2px;
+}
