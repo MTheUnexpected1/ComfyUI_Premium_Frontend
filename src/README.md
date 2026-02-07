@@ -711,6 +711,6 @@ If you find this project useful:
 
 ---
 
-**Version 1.0.0-alpha** • Last Updated: February 7, 2026
+**Version 1.1.0** • Last Updated: February 7, 2026
 
 </div>
