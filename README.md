@@ -526,7 +526,7 @@ left: -10,      // Half of new size
 
 ## 🗺️ **Roadmap**
 
-### **Phase 1: Foundation** (Q1 2026) 🔴 In Progress
+### **Phase 1: Foundation** (2026) 🔴 In Progress
 - [x] Crystal-clear connection system
 - [x] 40+ core nodes
 - [x] Modern glassmorphic UI
@@ -534,7 +534,7 @@ left: -10,      // Half of new size
 - [ ] Widget system (sliders, dropdowns, etc.)
 - [ ] Virtual scrolling sidebar
 
-### **Phase 2: Backend Integration** (Q1 2026) 🟠 Planned
+### **Phase 2: Backend Integration** (NO ETA) 🟠 Planned
 - [ ] REST API client
 - [ ] WebSocket real-time updates
 - [ ] Queue management
@@ -542,7 +542,7 @@ left: -10,      // Half of new size
 - [ ] History tracking
 - [ ] Progress visualization
 
-### **Phase 3: Workflow Management** (Q2 2026) 🟡 Planned
+### **Phase 3: Workflow Management** (NO ETA) 🟡 Planned
 - [ ] Save/load workflows
 - [ ] Undo/redo system
 - [ ] Keyboard shortcuts
@@ -550,7 +550,7 @@ left: -10,      // Half of new size
 - [ ] Validation engine
 - [ ] Error handling
 
-### **Phase 4: Advanced Features** (Q2 2026) 🟢 Planned
+### **Phase 4: Advanced Features** (NO ETA) 🟢 Planned
 - [ ] Node groups
 - [ ] Advanced search
 - [ ] Templates library
@@ -558,7 +558,7 @@ left: -10,      // Half of new size
 - [ ] Settings panel
 - [ ] Auto-layout
 
-### **Phase 5: Innovation** (Q3 2026) 💡 Future
+### **Phase 5: Innovation** (NO ETA) 💡 Future
 - [ ] AI-powered suggestions
 - [ ] Natural language search
 - [ ] Workflow optimization
@@ -566,7 +566,7 @@ left: -10,      // Half of new size
 - [ ] Cloud integration
 - [ ] Mobile app
 
-### **Phase 6: Ecosystem** (Q4 2026) 🌐 Future
+### **Phase 6: Ecosystem** (NO ETA) 🌐 Future
 - [ ] Plugin system
 - [ ] Workflow marketplace
 - [ ] 3D visualization
