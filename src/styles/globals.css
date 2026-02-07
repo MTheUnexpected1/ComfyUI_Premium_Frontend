@@ -1,4 +1,3 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 @theme {
@@ -133,3 +132,48 @@ body {
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
+
+/* Patch layout scaffolding (keeps core theme aesthetics) */
+.app-shell { width: 100%; height: 100%; overflow: hidden; }
+.topbar {
+  position: fixed; left: 12px; right: 12px; top: 12px; height: 56px;
+  border: 1px solid rgba(255,255,255,.12); border-radius: 12px;
+  background: rgba(10, 12, 20, 0.78); backdrop-filter: blur(14px);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 14px; z-index: 60;
+}
+.brand-block { display: flex; align-items: center; gap: 10px; }
+.brand-icon { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; background: linear-gradient(145deg, #6e7cff, #4ec0ff); }
+.brand-title { font-weight: 700; line-height: 1; }
+.brand-subtitle { font-size: 11px; color: rgba(255,255,255,.55); margin-top: 2px; }
+.topbar-actions { display: flex; gap: 8px; align-items: center; }
+.topbar-button { border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04); color: #fff; border-radius: 8px; padding: 7px 10px; display: inline-flex; gap: 6px; align-items: center; font-size: 12px; cursor: pointer; }
+.primary-action { border: 1px solid #5c6df0; background: linear-gradient(140deg, #6679ff, #4ec0ff); color: #fff; border-radius: 8px; padding: 8px 12px; display: inline-flex; gap: 6px; align-items: center; font-weight: 600; font-size: 12px; cursor: pointer; }
+.workspace-main { position: fixed; left: 356px; right: 290px; top: 78px; bottom: 12px; border: 1px solid rgba(255,255,255,.12); border-radius: 12px; overflow: hidden; background: #080b14; }
+.sidebar-toggle { position: fixed; top: 78px; left: 12px; z-index: 65; width: 32px; height: 32px; border-radius: 8px; border: 1px solid rgba(255,255,255,.12); color: #fff; background: rgba(255,255,255,.04); cursor: pointer; display: grid; place-items: center; }
+.sidebar { position: fixed; top: 78px; left: 12px; bottom: 12px; width: 332px; border: 1px solid rgba(255,255,255,.12); border-radius: 12px; background: rgba(12,15,28,.92); display: flex; flex-direction: column; padding: 12px; gap: 12px; z-index: 55; }
+.sidebar-header { display: flex; justify-content: space-between; align-items: center; }
+.sidebar-header h2 { font-size: 15px; }
+.sidebar-header p { color: rgba(255,255,255,.55); font-size: 11px; margin-top: 2px; }
+.search-wrap { border: 1px solid rgba(255,255,255,.12); border-radius: 8px; background: rgba(255,255,255,.03); padding: 8px; display: flex; gap: 8px; align-items: center; color: rgba(255,255,255,.55); }
+.search-wrap input { width: 100%; border: 0; outline: none; background: transparent; color: #fff; font-size: 13px; }
+.node-list { overflow: auto; display: flex; flex-direction: column; gap: 8px; }
+.node-item { border: 1px solid rgba(255,255,255,.12); border-left: 3px solid var(--node-accent, #6e7cff); border-radius: 8px; background: rgba(255,255,255,.03); padding: 10px; cursor: grab; }
+.node-item:active { cursor: grabbing; }
+.node-item h3 { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+.node-item p { font-size: 11px; color: rgba(255,255,255,.55); line-height: 1.3; }
+.inspector-panel { position: fixed; top: 78px; right: 12px; bottom: 12px; width: 266px; border: 1px solid rgba(255,255,255,.12); border-radius: 12px; background: rgba(12,15,28,.92); padding: 12px; z-index: 50; }
+.inspector-panel h2 { font-size: 14px; margin-bottom: 10px; }
+.inspector-card { border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03); border-radius: 8px; padding: 10px; font-size: 12px; color: rgba(255,255,255,.6); margin-bottom: 10px; }
+.inspector-card h3 { color: #fff; margin-bottom: 6px; font-size: 12px; }
+.inspector-card ul { list-style: none; display: grid; gap: 4px; }
+.canvas-root { width: 100%; height: 100%; position: relative; }
+.canvas-toolbar { position: absolute; top: 12px; left: 12px; z-index: 40; display: flex; gap: 8px; }
+.toolbar-primary { border: 1px solid rgba(255,255,255,.12); background: rgba(15,23,48,.92); color: #fff; padding: 7px 10px; border-radius: 8px; font-size: 12px; cursor: pointer; }
+.flow-node { min-width: 230px; max-width: 340px; border: 1px solid; border-radius: 10px; background: linear-gradient(180deg, rgba(14,18,30,0.96), rgba(9,11,18,0.96)); overflow: hidden; }
+.flow-node-title { height: 32px; border-bottom: 1px solid; display: flex; align-items: center; justify-content: space-between; padding: 0 10px; font-size: 13px; font-weight: 600; }
+.flow-node-exec { width: 8px; height: 8px; border-radius: 999px; }
+.flow-node-body { padding: 8px 10px; display: grid; gap: 8px; }
+.flow-node-ports { display: grid; gap: 6px; }
+.flow-port-row { position: relative; min-height: 18px; display: flex; align-items: center; gap: 8px; color: #d6dbef; font-size: 12px; }
+.flow-port-row.output { justify-content: flex-end; }
