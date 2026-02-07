@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 @theme {
-  /* Premium dark palette - inspired by Linear/Vercel */
+  /* Premium dark palette */
   --color-bg-primary: #0f0f11;
   --color-bg-secondary: #111113;
   --color-bg-tertiary: #18181b;
@@ -10,20 +10,6 @@
   /* Glass morphism */
   --glass-bg: rgba(0, 0, 0, 0.4);
   --glass-border: rgba(255, 255, 255, 0.1);
-  
-  /* Category colors - muted but distinct */
-  --color-latent: #a855f7;      /* Purple - samplers, latent ops */
-  --color-conditioning: #f59e0b; /* Amber - CLIP, prompts */
-  --color-image: #10b981;        /* Emerald - image load/save */
-  --color-model: #3b82f6;        /* Blue - checkpoints, loaders */
-  --color-advanced: #ef4444;     /* Red - advanced/experimental */
-  
-  /* Glow effects */
-  --glow-latent: 0 0 20px rgba(168, 85, 247, 0.5);
-  --glow-conditioning: 0 0 20px rgba(245, 158, 11, 0.5);
-  --glow-image: 0 0 20px rgba(16, 185, 129, 0.5);
-  --glow-model: 0 0 20px rgba(59, 130, 246, 0.5);
-  --glow-advanced: 0 0 20px rgba(239, 68, 68, 0.5);
 }
 
 * {
@@ -40,7 +26,10 @@ body {
   color: #fafafa;
 }
 
-/* React Flow overrides for premium look */
+/* ==========================================
+   REACT FLOW OVERRIDES - CRYSTAL CLEAR PORTS
+   ========================================== */
+
 .react-flow {
   background: #0f0f11;
 }
@@ -51,48 +40,62 @@ body {
 }
 
 .react-flow__node.selected {
-  box-shadow: none; /* We handle this in custom node */
+  box-shadow: none;
 }
 
-.react-flow__handle {
-  width: 14px;
-  height: 14px;
-  border: 2px solid #0f0f11;
+/* 
+  PORT HANDLE STYLING - LARGE AND VISIBLE
+  16px ports, grows to 22px on hover
+*/
+.port-handle {
+  width: 16px !important;
+  height: 16px !important;
   border-radius: 50%;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: crosshair !important;
+  position: relative;
+  z-index: 10;
 }
 
-.react-flow__handle:hover {
-  transform: scale(1.3);
-  box-shadow: 0 0 12px currentColor;
+.port-handle:hover {
+  width: 22px !important;
+  height: 22px !important;
+  transform: scale(1.2) !important;
+  border-width: 4px !important;
+  box-shadow: 
+    0 0 20px currentColor,
+    0 0 12px currentColor,
+    0 0 6px currentColor,
+    0 0 30px rgba(255, 255, 255, 0.3) !important;
+  z-index: 20 !important;
+  filter: brightness(1.3);
 }
 
-.react-flow__handle-connecting {
-  background: transparent !important;
-  border: 2px dashed currentColor !important;
-}
-
+/* Edge styling - 4.5px thick */
 .react-flow__edge-path {
-  stroke-width: 3.5px;
-  filter: drop-shadow(0 0 4px currentColor);
+  stroke-width: 4.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.react-flow__edge.selected .react-flow__edge-path {
-  stroke-width: 4px;
-  filter: drop-shadow(0 0 8px currentColor);
+.react-flow__edge.selected .react-flow__edge-path,
+.react-flow__edge:hover .react-flow__edge-path {
+  stroke-width: 6.5px;
 }
 
-/* Animated connection line while dragging */
+/* Connection line preview */
 .react-flow__connection-path {
-  stroke-width: 3.5px;
-  stroke-dasharray: 8 4;
-  animation: dash 1s linear infinite;
-  filter: drop-shadow(0 0 6px currentColor);
+  stroke-width: 4.5px;
+  stroke-dasharray: 12 8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: connection-dash 1.5s linear infinite;
 }
 
-@keyframes dash {
+@keyframes connection-dash {
   to {
-    stroke-dashoffset: -12;
+    stroke-dashoffset: -20;
   }
 }
 
@@ -116,39 +119,6 @@ body {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Mini-map styling */
-.react-flow__minimap {
-  background: rgba(0, 0, 0, 0.6) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
-}
-
-.react-flow__minimap-mask {
-  fill: rgba(168, 85, 247, 0.2);
-  stroke: rgba(168, 85, 247, 0.6);
-  stroke-width: 2;
-}
-
-.react-flow__minimap-node {
-  fill: rgba(255, 255, 255, 0.15);
-  stroke: none;
-}
-
-/* Executing node animation */
-@keyframes node-pulse {
-  0%, 100% {
-    box-shadow: 0 0 0 0 currentColor;
-  }
-  50% {
-    box-shadow: 0 0 20px 4px currentColor;
-  }
-}
-
-.node-executing {
-  animation: node-pulse 2s ease-in-out infinite;
-}
-
 /* Utility classes */
 .glass {
   background: rgba(0, 0, 0, 0.4);
@@ -158,8 +128,8 @@ body {
 }
 
 .glass-strong {
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
